@@ -44,9 +44,7 @@ function createCanvas() {
   canvas.height = documentHeight();
   canvas.style.position = "absolute";
 
-  let top = documentScroll();
-
-  canvas.style.top = top + "px";
+  canvas.style.top = 0 + "px";
   canvas.style.left = 0 + "px";
   canvas.style.zIndex = 99999;
 
@@ -67,6 +65,7 @@ function createCanvas() {
   const canvas = createCanvas();
   document.body.appendChild(canvas);
   const ctx = canvas.getContext("2d");
+  const offset = documentScroll();
 
   console.log(platforms);
 
@@ -75,6 +74,6 @@ function createCanvas() {
   for (let i = 0; i < platforms.length; i++) {
     let p = platforms[i];
     ctx.fillStyle = "rgb(200, 200, 200)";
-    ctx.fillRect(p.x, p.y, p.width, p.height);
+    ctx.fillRect(p.x, p.y + offset, p.width, p.height);
   }
 })();
