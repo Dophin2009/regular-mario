@@ -13,6 +13,7 @@
 
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms } from "./generate";
+import { updatePlayer, setupKeyListener } from "./playerInput";
 
 export var platforms = [];
 export const g = -20;
@@ -55,7 +56,11 @@ function createCanvas() {
   return canvas;
 }
 
-function loop() {}
+function loop() {
+  updatePlayer();
+
+  // render player
+}
 
 (function() {
   // var limiter = new Bottleneck({
@@ -63,6 +68,8 @@ function loop() {}
   // reservoirRefreshAmount: 100,
   // reservoirRefreshInterval: 5 * 1000
   // });
+
+  setupKeyListener();
 
   console.log(documentScroll());
   platforms = calculatePlatforms(document.body);
