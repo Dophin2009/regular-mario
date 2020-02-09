@@ -1,3 +1,5 @@
+import { Collider } from "./collider";
+
 export class Platform {
   constructor(el, x, y, width, height) {
     this.x = x;

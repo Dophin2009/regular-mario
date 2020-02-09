@@ -14,7 +14,9 @@
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms } from "./generate";
 
-const platforms = calculatePlatforms(document.body);
+export var platforms = [];
+export const g = -20;
+export var player;
 
 function documentWidth() {
   return Math.max(
@@ -53,9 +55,7 @@ function createCanvas() {
   return canvas;
 }
 
-function loop() {
-  
-}
+function loop() {}
 
 (function() {
   // var limiter = new Bottleneck({
@@ -65,6 +65,7 @@ function loop() {
   // });
 
   console.log(documentScroll());
+  platforms = calculatePlatforms(document.body);
 
   const canvas = createCanvas();
   document.body.appendChild(canvas);
@@ -72,8 +73,6 @@ function loop() {
   const offset = documentScroll();
 
   console.log(platforms);
-
-  const g = -20;
 
   for (let i = 0; i < platforms.length; i++) {
     let p = platforms[i];
