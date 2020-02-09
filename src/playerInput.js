@@ -28,23 +28,31 @@ export function setupKeyListener() {
     }
 
     if (event.key === " " || event.key === "ArrowUp" || event.key === "w") {
+      event.preventDefault();
       up = true;
     } else if (event.key === "s" || event.key === "ArrowDown") {
+      event.preventDefault();
       down = true;
     } else if (event.key === "a" || event.key === "ArrowLeft") {
+      event.preventDefault();
       left = true;
     } else if (event.key === "d" || event.key === "ArrowRight") {
+      event.preventDefault();
       right = true;
     }
   });
   document.addEventListener("keyup", function(event) {
     if (event.key === " " || event.key === "ArrowUp" || event.key === "w") {
+      event.preventDefault();
       up = false;
     } else if (event.key === "s" || event.key === "ArrowDown") {
+      event.preventDefault();
       down = false;
     } else if (event.key === "a" || event.key === "ArrowLeft") {
+      event.preventDefault();
       left = false;
     } else if (event.key === "d" || event.key === "ArrowRight") {
+      event.preventDefault();
       right = false;
     }
   });
