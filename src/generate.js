@@ -31,7 +31,6 @@ function textNodesUnder(el) {
       node.nodeName.toLowerCase() != "div" &&
       node.nodeType === 3
     ) {
-      console.log(node);
       textNodes.push(node);
     }
   }
