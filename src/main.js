@@ -25,6 +25,7 @@ import { Player } from "./player";
 import { Collider } from "./collider";
 import { isColliding } from "./collisions";
 import { projectiles, Projectile, projectileGen } from "./projectile";
+import { Follower } from "./monsters"
 
 export let platforms = [];
 export const g = 0.025;
@@ -151,6 +152,10 @@ export function start() {
   finishY = Math.min(platforms[0].y + 30, 100);
 
   player = new Player((docW - 25) / 2, docH - 25, 25, 25);
+
+  for (let i = 0; i < 3; i++){
+    new Follower(Math.random()*300,Math.random()*300,30,30,5);
+  }
 
   interval = setInterval(loop, 10);
 }
