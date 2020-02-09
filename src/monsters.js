@@ -1,7 +1,8 @@
-import { Entity, entities } from "./entity"
-import { player } from "./main"
-import { Collider } from "./collider"
-import { projectiles } from "./projectiles"
+import { Entity, entities } from "./entity";
+import { player } from "./main";
+import { Collider } from "./collider";
+import { projectiles } from "./projectile";
+import { ctx } from "./main";
 
 export class Follower{
     constructor(x,y,w,h,speed){

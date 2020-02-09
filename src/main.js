@@ -126,6 +126,9 @@ export function restart() {
   player.vx = 0;
   player.vy = 0;
   projectiles.length = 0;
+  for (let i = 0; i < 3; i++){
+    new Follower(Math.random()*docW,Math.random()*docH,15,15,0.5);
+  }
 }
 
 export function stop() {
@@ -154,7 +157,7 @@ export function start() {
   player = new Player((docW - 25) / 2, docH - 25, 25, 25);
 
   for (let i = 0; i < 3; i++){
-    new Follower(Math.random()*300,Math.random()*300,30,30,5);
+    new Follower(Math.random()*docW,Math.random()*docH,15,15,0.5);
   }
 
   interval = setInterval(loop, 10);
