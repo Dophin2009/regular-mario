@@ -17,9 +17,7 @@ export function setupKeyListener() {
         isLooping = true;
         isScrollLocked = true;
       } else if (isLooping) {
-        hide();
-        isLooping = false;
-        isScrollLocked = false;
+        pause();
       } else {
         unhide();
         isLooping = true;
@@ -52,4 +50,10 @@ export function setupKeyListener() {
 
 export function updatePlayer() {
   player.move(up, down, left, right);
+}
+
+export function pause() {
+  hide();
+  isLooping = false;
+  isScrollLocked = false;
 }

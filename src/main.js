@@ -17,11 +17,13 @@ import {
   setupKeyListener,
   isLooping,
   started,
-  isScrollLocked
+  isScrollLocked,
+  pause
 } from "./playerInput";
 import { entities } from "./entity";
 import { Player } from "./player";
 import { Collider } from "./collider";
+import { isColliding } from "./collisions";
 import { projectiles, Projectile, projectileGen } from "./projectile";
 
 export let platforms = [];
@@ -34,6 +36,7 @@ let docH;
 let offset;
 let finishY;
 let interval;
+let stopped = false;
 
 function documentWidth() {
   return Math.max(
@@ -88,7 +91,13 @@ function loop() {
 
     for (let i = 0; i < entities.length; i++) entities[i].update();
 
-    for (let i = 0; i < projectiles.length; i++) projectiles[i].update();
+    for (let i = 0; i < projectiles.length; i++) {
+      projectiles[i].update();
+      if (isColliding(player.collider, projectiles[i].collider)) {
+        restart();
+      }
+    }
+    
     if (player.y < finishY) {
       stop();
     }
@@ -110,12 +119,17 @@ export function unhide() {
   canvas.style.display = "block";
 }
 
+export function restart() {
+  player.x = (docW - 25) / 2;
+  player.y = docH - 25;
+  player.vx = 0;
+  player.vy = 0;
+  projectiles.length = 0;
+}
+
 export function stop() {
-  canvas.remove();
-  started = false;
-  isLooping = false;
-  isScrollLocked = false;
-  clearInterval(interval);
+  restart();
+  pause();
 }
 
 export function start() {
@@ -136,7 +150,7 @@ export function start() {
 
   finishY = Math.min(platforms[0].y + 30, 100);
 
-  player = new Player(0, docH - 25, 25, 25);
+  player = new Player((docW - 25) / 2, docH - 25, 25, 25);
 
   interval = setInterval(loop, 10);
 }
