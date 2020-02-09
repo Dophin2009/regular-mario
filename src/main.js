@@ -13,8 +13,13 @@
 
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms } from "./generate";
+import { updatePlayer, setupKeyListener } from "./playerInput";
+import { entities, Entity } from "./entity"
+import { Player } from "./player"
 
-const platforms = calculatePlatforms(document.body);
+export let platforms = [];
+export const g = -20;
+export let player;
 
 function documentWidth() {
   return Math.max(
@@ -54,7 +59,30 @@ function createCanvas() {
 }
 
 function loop() {
-  
+  updatePlayer();
+
+  for (let i = 0; i < entities.length; i++)
+    entities[i].update();
+}
+
+function start() {
+  console.log(documentScroll());
+  platforms = calculatePlatforms(document.body);
+
+  const canvas = createCanvas();
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext("2d");
+  const offset = documentScroll();
+
+  console.log(platforms);
+
+  for (let i = 0; i < platforms.length; i++) {
+    let p = platforms[i];
+    ctx.fillStyle = "rgb(200, 200, 200)";
+    ctx.fillRect(p.x, p.y + offset, p.width, p.height);
+  }
+
+  setInterval(loop, 10);
 }
 
 (function() {
@@ -64,22 +92,5 @@ function loop() {
   // reservoirRefreshInterval: 5 * 1000
   // });
 
-  console.log(documentScroll());
-
-  const canvas = createCanvas();
-  document.body.appendChild(canvas);
-  const ctx = canvas.getContext("2d");
-  const offset = documentScroll();
-
-  console.log(platforms);
-
-  const g = -20;
-
-  for (let i = 0; i < platforms.length; i++) {
-    let p = platforms[i];
-    ctx.fillStyle = "rgb(200, 200, 200)";
-    ctx.fillRect(p.x, p.y + offset, p.width, p.height);
-  }
-
-  setInterval(loop, 10);
+  setupKeyListener();
 })();
