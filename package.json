@@ -1,0 +1,24 @@
+{
+  "name": "plaformer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "platformer.user.js",
+  "scripts": {
+    "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dophin2009/platformer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dophin2009/platformer/issues"
+  },
+  "homepage": "https://github.com/Dophin2009/platformer#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
