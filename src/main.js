@@ -13,7 +13,7 @@
 
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms } from "./generate";
-import { updatePlayer, setupKeyListener } from "./playerInput";
+import { updatePlayer, setupKeyListener, isLooping } from "./playerInput";
 import { entities, Entity } from "./entity";
 import { Player } from "./player";
 import { Collider } from "./collider";
@@ -23,8 +23,6 @@ export const g = 0.0002;
 export let player;
 export let canvas;
 export let ctx;
-
-export let isLooping = true;
 
 function documentWidth() {
   return Math.max(
@@ -64,22 +62,28 @@ function createCanvas() {
 }
 
 function loop() {
-  while (isLooping){
+  if (isLooping) {
     updatePlayer();
 
     for (let i = 0; i < entities.length; i++) entities[i].update();
-
-    console.log("Player coordinates: (" + player.x + ", " + player.y + ")");
   }
 }
 
-export function hide(){
+export function hide() {
   canvas.style.display = "none";
+}
+
+export function unhide() {
+  canvas.style.display = "block";
 }
 
 export function start() {
   console.log(documentScroll());
-  platforms = calculatePlatforms(document.body, documentWidth(), documentHeight());
+  platforms = calculatePlatforms(
+    document.body,
+    documentWidth(),
+    documentHeight()
+  );
 
   canvas = createCanvas();
   document.body.appendChild(canvas);
@@ -96,12 +100,12 @@ export function start() {
     ctx.stroke();
   }
 
+  player = new Player(0, 0, 25, 50);
+
   ctx.fillStyle = "rgb(255, 0, 0)";
   ctx.strokeStyle = "rgba(0, 0, 0, 0)";
-  ctx.rect(this.x, this.y, this.w, this.h);
+  ctx.rect(player.x, player.y, player.w, player.h);
   ctx.stroke();
-
-  player = new Player(0, 0, 25, 50);
 
   setInterval(loop, 10);
 }

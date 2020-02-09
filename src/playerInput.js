@@ -1,22 +1,26 @@
-import { player, start, isLooping } from "./main";
+import { player, start, hide, unhide } from "./main";
 
 let up = false;
 let down = false;
 let left = false;
 let right = false;
 let started = false;
+export let isLooping = true;
 
 export function setupKeyListener() {
   document.addEventListener("keydown", function(event) {
-    if (!started && event.key === "\\") {
-      start();
-      started = true;
-      isLooping = true;
-    }
-    else if (started && event.key === "\\"){
-        started = false;
+    if (event.key === "\\") {
+      if (!started) {
+        start();
+        started = true;
+        isLooping = true;
+      } else if (isLooping) {
         hide();
         isLooping = false;
+      } else {
+        unhide();
+        isLooping = true;
+      }
     }
 
     if (event.key === " " || event.key === "ArrowUp" || event.key === "w") {
