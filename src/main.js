@@ -19,7 +19,7 @@ import { Player } from "./player";
 import { Collider } from "./collider";
 
 export let platforms = [];
-export const g = -20;
+export const g = -2;
 export let player;
 
 function documentWidth() {
@@ -63,6 +63,8 @@ function loop() {
   updatePlayer();
 
   for (let i = 0; i < entities.length; i++) entities[i].update();
+
+  console.log("Player coordinates: (" + player.x + ", " + player.y + ")");
 }
 
 export function start() {

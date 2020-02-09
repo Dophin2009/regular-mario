@@ -61,7 +61,7 @@ export function calculatePlatforms(el, w, h) {
     }
   }
 
-  let ground = new Platform(Null, 0, h, w, 10);
+  let ground = new Platform(null, 0, h, w, 10);
   platforms.push(ground);
 
   return platforms;

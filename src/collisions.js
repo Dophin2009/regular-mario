@@ -1,4 +1,5 @@
 import { sides } from "./side_enum";
+import { Collider } from "./collider";
 
 export function collisionDir(moveColliderPast, moveColliderFuture, staticCollider) {
   if (isColliding(moveColliderFuture, staticCollider)) {

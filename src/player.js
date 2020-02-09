@@ -6,7 +6,7 @@ export class Player extends Entity {
     super(x, y, w, h);
 
     this.targetVel = 0;
-    this.maxVel = 15;
+    this.maxVel = 1.5;
     this.velUpdateCoef = 0.4;
 
     this.vertKE = 0;
