@@ -3,7 +3,7 @@ import { sides } from "./side_enum";
 import { isColliding, collisionDir, collisionCorrection } from "./collisions";
 import { platforms, g } from "./main";
 
-export var entities = [];
+export let entities = [];
 
 export class Entity {
   constructor(x, y, w, h) {

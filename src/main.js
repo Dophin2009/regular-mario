@@ -15,9 +15,9 @@ import { Bottleneck } from "bottleneck";
 import { calculatePlatforms } from "./generate";
 import { updatePlayer, setupKeyListener } from "./playerInput";
 
-export var platforms = [];
+export let platforms = [];
 export const g = -20;
-export var player;
+export let player;
 
 function documentWidth() {
   return Math.max(
