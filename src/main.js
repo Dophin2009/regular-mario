@@ -19,8 +19,10 @@ import { Player } from "./player";
 import { Collider } from "./collider";
 
 export let platforms = [];
-export const g = -2;
+export const g = 0.0002;
 export let player;
+export let canvas;
+export let ctx;
 
 export let isLooping = true;
 
@@ -79,9 +81,9 @@ export function start() {
   console.log(documentScroll());
   platforms = calculatePlatforms(document.body, documentWidth(), documentHeight());
 
-  const canvas = createCanvas();
+  canvas = createCanvas();
   document.body.appendChild(canvas);
-  const ctx = canvas.getContext("2d");
+  ctx = canvas.getContext("2d");
   const offset = documentScroll();
 
   console.log(platforms);
@@ -94,7 +96,12 @@ export function start() {
     ctx.stroke();
   }
 
-  player = new Player(0, documentHeight() - 50, 25, 50);
+  ctx.fillStyle = "rgb(255, 0, 0)";
+  ctx.strokeStyle = "rgba(0, 0, 0, 0)";
+  ctx.rect(this.x, this.y, this.w, this.h);
+  ctx.stroke();
+
+  player = new Player(0, 0, 25, 50);
 
   setInterval(loop, 10);
 }

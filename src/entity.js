@@ -21,7 +21,6 @@ export class Entity {
   }
 
   update() {
-    console.log("vy: " + this.vy);
     this.vy += g;
 
     let nextCollider = new Collider(
