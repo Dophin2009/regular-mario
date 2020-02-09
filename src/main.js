@@ -10,12 +10,11 @@
 // @require      https://unpkg.com/bottleneck@2.13.0/es5.js
 // ==/UserScript==
 
-;(function() {
-
-    var limiter = new Bottleneck({
-        reservoir: 10,
-        reservoirRefreshAmount: 100,
-        reservoirRefreshInterval: 5 * 1000
-    });
-    
+import { Bottleneck } from "bottleneck";
+(function() {
+  var limiter = new Bottleneck({
+    reservoir: 10,
+    reservoirRefreshAmount: 100,
+    reservoirRefreshInterval: 5 * 1000
+  });
 })();
