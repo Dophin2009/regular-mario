@@ -1,12 +1,19 @@
 import { player } from "./main";
+import { start } from "./main";
 
 let up = false;
 let down = false;
 let left = false;
 let right = false;
+let started = false;
 
 export function setupKeyListener() {
   document.addEventListener("keydown", function(event) {
+    if (!started && event.key === "\\") {
+      start();
+      started = true;
+    }
+
     if (event.key === " " || event.key === "ArrowUp" || event.key === "w") {
       up = true;
     } else if (event.key === "s" || event.key === "ArrowDown") {

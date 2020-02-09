@@ -14,6 +14,8 @@
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms } from "./generate";
 import { updatePlayer, setupKeyListener } from "./playerInput";
+import { entities, Entity } from "./entity"
+import { Player } from "./player"
 
 export let platforms = [];
 export const g = -20;
@@ -59,18 +61,11 @@ function createCanvas() {
 function loop() {
   updatePlayer();
 
-  // render player
+  for (let i = 0; i < entities.length; i++)
+    entities[i].update();
 }
 
-(function() {
-  // var limiter = new Bottleneck({
-  // reservoir: 10,
-  // reservoirRefreshAmount: 100,
-  // reservoirRefreshInterval: 5 * 1000
-  // });
-
-  setupKeyListener();
-
+function start() {
   console.log(documentScroll());
   platforms = calculatePlatforms(document.body);
 
@@ -88,4 +83,14 @@ function loop() {
   }
 
   setInterval(loop, 10);
+}
+
+(function() {
+  // var limiter = new Bottleneck({
+  // reservoir: 10,
+  // reservoirRefreshAmount: 100,
+  // reservoirRefreshInterval: 5 * 1000
+  // });
+
+  setupKeyListener();
 })();
