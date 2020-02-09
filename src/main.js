@@ -14,14 +14,9 @@
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms } from "./generate";
 import { updatePlayer, setupKeyListener } from "./playerInput";
-<<<<<<< HEAD
-import { entities, Entity } from "./entity"
-import { Player } from "./player"
-import { Collider } from "./collider";
-=======
 import { entities, Entity } from "./entity";
 import { Player } from "./player";
->>>>>>> fa6bd357d686ef747208ea345b53005ec1148ee0
+import { Collider } from "./collider";
 
 export let platforms = [];
 export const g = -20;
