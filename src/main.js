@@ -98,20 +98,21 @@ export function unhide() {
 
 export function start() {
   console.log(documentScroll());
+  offset = documentScroll();
   platforms = calculatePlatforms(
     document.body,
     documentWidth(),
-    documentHeight()
+    documentHeight(),
+    offset
   );
 
   canvas = createCanvas();
   document.body.appendChild(canvas);
   ctx = canvas.getContext("2d");
-  offset = documentScroll();
 
   console.log(platforms);
 
-  player = new Player(0, 0, 25, 50);
+  player = new Player(0, documentHeight() - 25, 25, 25);
 
   setInterval(loop, 10);
 }

@@ -39,7 +39,7 @@ function textNodesUnder(el) {
   return textNodes;
 }
 
-export function calculatePlatforms(el, w, h) {
+export function calculatePlatforms(el, w, h, offset) {
   let nodes = textNodesUnder(el);
   let platforms = [];
   for (let i = 0; i < nodes.length; i++) {
@@ -53,7 +53,7 @@ export function calculatePlatforms(el, w, h) {
       let plat = new Platform(
         nodes[i],
         rect.left,
-        rect.top,
+        rect.top + offset,
         rect.width,
         rect.height
       );

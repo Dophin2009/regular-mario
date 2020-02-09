@@ -33,7 +33,7 @@ export class Player extends Entity {
 
     if (this.collision !== sides.DOWN) this.vertKE = 0;
 
-    ctx.fillStyle = "rgb(255, 0, 0)";
+    ctx.fillStyle = "rgb(0, 0, 255)";
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
 }
