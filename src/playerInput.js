@@ -5,7 +5,7 @@ let down = false;
 let left = false;
 let right = false;
 
-function setupKeyListener() {
+export function setupKeyListener() {
   document.addEventListener("keydown", function(event) {
     if (event.key === " " || event.key === "ArrowUp" || event.key === "w") {
       up = true;
