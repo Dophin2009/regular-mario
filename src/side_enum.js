@@ -1,7 +1,7 @@
 export const sides = {
-    LEFT: "left",
-    RIGHT: "right",
-    UP: "up",
-    DOWN: "down",
-    NONE: "none"
+    LEFT: 0,
+    RIGHT: 1,
+    UP: 2,
+    DOWN: 3,
+    NONE: 4
 }
