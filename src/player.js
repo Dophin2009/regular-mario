@@ -11,7 +11,7 @@ export class Player extends Entity {
     this.velUpdateCoef = 0.4;
 
     this.vertKE = 0;
-    this.vertKERate = 10;
+    this.vertKERate = 0.1;
   }
 
   move(up, down, left, right) {
@@ -34,8 +34,6 @@ export class Player extends Entity {
     if (this.collision !== sides.DOWN) this.vertKE = 0;
 
     ctx.fillStyle = "rgb(255, 0, 0)";
-    ctx.strokeStyle = "rgba(0, 0, 0, 0)";
-    ctx.rect(this.x, this.y, this.w, this.h);
-    ctx.stroke();
+    ctx.fillRect(this.x, this.y, this.w, this.h);
   }
 }

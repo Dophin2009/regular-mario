@@ -22,7 +22,20 @@ export class Entity {
 
   update() {
     this.vy += g;
+    
+    this.getCollisions();
 
+    this.x = this.collider.x;
+    this.y = this.collider.y;
+    if (this.collision === sides.DOWN) this.vy = 0;
+    // if (this.collision === sides.UP) this.vy = -this.vy;
+    // if (this.collision === sides.LEFT || this.collision === sides.RIGHT)
+    //   this.vx = 0;
+
+    return;
+  }
+
+  getCollisions() {
     let nextCollider = new Collider(
       this.x + this.vx,
       this.y + this.vy,
@@ -31,26 +44,26 @@ export class Entity {
     );
     for (let i = 0; i < platforms.length; i++) {
         let platform = platforms[i];
-        this.collision = collisionDir(
+        let collision = collisionDir(
             this.collider,
             nextCollider,
             platform.collider
         );
-
-        this.collider = collisionCorrection(
-            this.collision,
-            this.collider,
-            nextCollider,
-            platform.collider
-        );
-        this.x = this.collider.x;
-        this.y = this.collider.y;
-
-        if (this.collision === sides.DOWN) this.vy = 0;
-        // if (this.collision === sides.UP) this.vy = -this.vy;
-        // if (this.collision === sides.LEFT || this.collision === sides.RIGHT)
-        //   this.vx = 0;
-        return;
+        
+        if (collision === sides.DOWN) {
+            this.collision = collision;
+            this.collider = collisionCorrection(
+                this.collision,
+                this.collider,
+                nextCollider,
+                platform.collider
+            );
+            return;
+        }
     }
+
+    this.collision = sides.NONE;
+    this.collider = nextCollider;
+    return;
   }
 }

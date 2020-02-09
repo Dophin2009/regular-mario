@@ -19,10 +19,11 @@ import { Player } from "./player";
 import { Collider } from "./collider";
 
 export let platforms = [];
-export const g = 0.0002;
+export const g = 0.025;
 export let player;
 export let canvas;
 export let ctx;
+let offset;
 
 function documentWidth() {
   return Math.max(
@@ -62,9 +63,17 @@ function createCanvas() {
 }
 
 function loop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   updatePlayer();
 
   for (let i = 0; i < entities.length; i++) entities[i].update();
+  
+  // for (let i = 0; i < platforms.length; i++) {
+  //   let p = platforms[i];
+  //   ctx.strokeStyle = "rgb(0, 0, 0)";
+  //   ctx.strokeRect(p.x, p.y + offset, p.width, p.height);
+  // }
 
   console.log("Player coordinates: (" + player.x + ", " + player.y + ")");
 }
@@ -76,22 +85,9 @@ export function start() {
   canvas = createCanvas();
   document.body.appendChild(canvas);
   ctx = canvas.getContext("2d");
-  const offset = documentScroll();
+  offset = documentScroll();
 
   console.log(platforms);
-
-  for (let i = 0; i < platforms.length; i++) {
-    let p = platforms[i];
-    ctx.fillStyle = "rgba(200, 200, 200, 0.7)";
-    ctx.strokeStyle = "rgb(0, 0, 0)";
-    ctx.rect(p.x, p.y + offset, p.width, p.height);
-    ctx.stroke();
-  }
-
-  ctx.fillStyle = "rgb(255, 0, 0)";
-  ctx.strokeStyle = "rgba(0, 0, 0, 0)";
-  ctx.rect(this.x, this.y, this.w, this.h);
-  ctx.stroke();
 
   player = new Player(0, 0, 25, 50);
 

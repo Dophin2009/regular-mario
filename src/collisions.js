@@ -3,11 +3,11 @@ import { Collider } from "./collider";
 
 export function collisionDir(moveColliderPast, moveColliderFuture, staticCollider) {
   if (isColliding(moveColliderFuture, staticCollider)) {
-    if (moveColliderPast.y + moveColliderPast.h < staticCollider.y) {
+    if (moveColliderPast.y + moveColliderPast.h <= staticCollider.y) {
       return sides.DOWN;
-    } else if (moveColliderPast.x + moveColliderPast.w < staticCollider.x) {
+    } else if (moveColliderPast.x + moveColliderPast.w <= staticCollider.x) {
       return sides.RIGHT;
-    } else if (moveColliderPast.x > staticCollider.x + staticCollider.w) {
+    } else if (moveColliderPast.x >= staticCollider.x + staticCollider.w) {
       return sides.LEFT;
     } else {
       return sides.UP;
