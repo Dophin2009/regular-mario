@@ -32,16 +32,16 @@ function isColliding(moveColliderFuture, staticCollider){
 }
 
 function collisionCorrection(side, og, next, static){
-    if (side == sides.UP){
+    if (side === sides.UP){
         return new Collider(next.x, static.y + static.height, og.width, og.height);
     }
-    else if (side == sides.DOWN){
+    else if (side === sides.DOWN){
         return new Collider(next.x, static.y - og.height, og.width, og.height);
     }
-    else if (side == sides.LEFT){
+    else if (side === sides.LEFT){
         return new Collider(static.x + static.width, next.y, og.width, og.height);
     }
-    else if (side == sides.RIGHT){
+    else if (side === sides.RIGHT){
         return new Collider(static.x-og.width, next.y, og.width, og.height);
     }
 }
