@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: "./src/main.js",
   resolve: {
     extensions: [".tsx", ".ts", ".js"]
@@ -10,7 +10,6 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
     filename: "js/[name].js"
   },
-  devtool: "inline-source-map",
   node: {
     fs: "empty",
     cluster: "empty"
