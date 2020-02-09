@@ -6,10 +6,6 @@ class Platform {
     this.height = height;
     this.el = el;
   }
-
-  collide() {
-    // Implement
-  }
 }
 
 function textNodesUnder(el) {
