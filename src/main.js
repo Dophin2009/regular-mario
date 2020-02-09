@@ -22,12 +22,15 @@ import {
 import { entities, Entity } from "./entity";
 import { Player } from "./player";
 import { Collider } from "./collider";
+import { projectiles, Projectile, projectileGen } from "./projectile";
 
 export let platforms = [];
 export const g = 0.025;
 export let player;
 export let canvas;
 export let ctx;
+let docW;
+let docH;
 let offset;
 
 function documentWidth() {
@@ -77,14 +80,11 @@ function loop() {
       window.scrollTo(player.x, player.y - 300);
     }
 
+    projectileGen(docW, docH);
+
     for (let i = 0; i < entities.length; i++) entities[i].update();
 
-    // for (let i = 0; i < platforms.length; i++) {
-    //   let p = platforms[i];
-    //   ctx.strokeStyle = "rgb(0, 0, 0)";
-    //   ctx.strokeRect(p.x, p.y + offset, p.width, p.height);
-    // }
-    //
+    for (let i = 0; i < projectiles.length; i++) projectiles[i].update();
   }
 }
 
@@ -98,11 +98,13 @@ export function unhide() {
 
 export function start() {
   console.log(documentScroll());
+  docW = documentWidth();
+  docH = documentHeight();
   offset = documentScroll();
   platforms = calculatePlatforms(
     document.body,
-    documentWidth(),
-    documentHeight(),
+    docW,
+    docH,
     offset
   );
 
@@ -112,7 +114,7 @@ export function start() {
 
   console.log(platforms);
 
-  player = new Player(0, documentHeight() - 25, 25, 25);
+  player = new Player(0, docH - 25, 25, 25);
 
   setInterval(loop, 10);
 }
