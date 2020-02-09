@@ -76,6 +76,24 @@ function loop() {
   // }
 }
 
+export function disableScroll() { 
+  // Get the current page scroll position 
+  scrollTop =  
+    window.pageYOffset || document.documentElement.scrollTop; 
+  scrollLeft =  
+    window.pageXOffset || document.documentElement.scrollLeft, 
+
+      // if any scroll is attempted, 
+      // set this to the previous value 
+      window.onscroll = function() { 
+          window.scrollTo(scrollLeft, scrollTop); 
+      }; 
+} 
+
+export function enableScroll() { 
+  window.onscroll = function() {}; 
+} 
+
 export function hide() {
   canvas.style.display = "none";
 }

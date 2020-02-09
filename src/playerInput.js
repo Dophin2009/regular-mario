@@ -1,4 +1,4 @@
-import { player, start, hide, unhide } from "./main";
+import { player, start, hide, unhide, disableScroll, enableScroll } from "./main";
 
 let up = false;
 let down = false;
@@ -17,9 +17,11 @@ export function setupKeyListener() {
       } else if (isLooping) {
         hide();
         isLooping = false;
+        disableScroll();
       } else {
         unhide();
         isLooping = true;
+        enableScroll();
       }
     }
 
