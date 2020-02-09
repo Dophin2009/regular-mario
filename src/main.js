@@ -13,7 +13,7 @@
 
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms } from "./generate";
-import { updatePlayer, setupKeyListener } from "./playerInput";
+import { updatePlayer, setupKeyListener, isLooping } from "./playerInput";
 import { entities, Entity } from "./entity";
 import { Player } from "./player";
 import { Collider } from "./collider";
@@ -75,12 +75,21 @@ function loop() {
   //   ctx.strokeRect(p.x, p.y + offset, p.width, p.height);
   // }
 
-  console.log("Player coordinates: (" + player.x + ", " + player.y + ")");
+export function hide() {
+  canvas.style.display = "none";
+}
+
+export function unhide() {
+  canvas.style.display = "block";
 }
 
 export function start() {
   console.log(documentScroll());
-  platforms = calculatePlatforms(document.body, documentWidth(), documentHeight());
+  platforms = calculatePlatforms(
+    document.body,
+    documentWidth(),
+    documentHeight()
+  );
 
   canvas = createCanvas();
   document.body.appendChild(canvas);
