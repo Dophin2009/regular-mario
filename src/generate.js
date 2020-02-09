@@ -5,6 +5,7 @@ export class Platform {
     this.width = width;
     this.height = height;
     this.el = el;
+    this.collider = new Collider(x, y, width, height);
   }
 }
 

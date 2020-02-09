@@ -44,4 +44,5 @@ function collisionCorrection(side, og, next, static){
     else if (side === sides.RIGHT){
         return new Collider(static.x-og.width, next.y, og.width, og.height);
     }
+    else return next;
 }
