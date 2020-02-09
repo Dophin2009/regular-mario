@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/main.js",
   resolve: {
     extensions: [".tsx", ".ts", ".js"]
@@ -9,6 +9,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "js/[name].js"
+  },
+  optimization: {
+    minimize: false
   },
   node: {
     fs: "empty",
