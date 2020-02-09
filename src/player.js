@@ -26,8 +26,6 @@ export class Player extends Entity {
     update() {
         super.update();
         
-        if (this.collision === sides.UP) this.vy = -this.vy;
-        if (this.collision === sides.LEFT || this.collision === sides.RIGHT) this.vx = 0;
         if (this.collision !== sides.DOWN) this.vertKE = 0;
     }
 }
