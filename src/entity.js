@@ -30,19 +30,18 @@ export class Entity {
       this.h
     );
     for (let i = 0; i < platforms.length; i++) {
-      let platform = platforms[i];
-      if (isColliding(nextCollider, platform.collider)) {
+        let platform = platforms[i];
         this.collision = collisionDir(
-          this.collider,
-          nextCollider,
-          platform.collider
+            this.collider,
+            nextCollider,
+            platform.collider
         );
 
         this.collider = collisionCorrection(
-          this.collision,
-          this.collider,
-          nextCollider,
-          platform.collider
+            this.collision,
+            this.collider,
+            nextCollider,
+            platform.collider
         );
         this.x = this.collider.x;
         this.y = this.collider.y;
@@ -52,7 +51,6 @@ export class Entity {
         // if (this.collision === sides.LEFT || this.collision === sides.RIGHT)
         //   this.vx = 0;
         return;
-      }
     }
   }
 }

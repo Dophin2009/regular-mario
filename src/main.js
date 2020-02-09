@@ -16,6 +16,7 @@ import { calculatePlatforms } from "./generate";
 import { updatePlayer, setupKeyListener } from "./playerInput";
 import { entities, Entity } from "./entity"
 import { Player } from "./player"
+import { Collider } from "./collider";
 
 export let platforms = [];
 export const g = -20;
@@ -67,7 +68,7 @@ function loop() {
 
 export function start() {
   console.log(documentScroll());
-  platforms = calculatePlatforms(document.body);
+  platforms = calculatePlatforms(document.body, documentWidth(), documentHeight());
 
   const canvas = createCanvas();
   document.body.appendChild(canvas);
@@ -81,6 +82,8 @@ export function start() {
     ctx.fillStyle = "rgb(200, 200, 200)";
     ctx.fillRect(p.x, p.y + offset, p.width, p.height);
   }
+
+  player = new Player(0, documentHeight() - 50, 25, 50);
 
   setInterval(loop, 10);
 }
