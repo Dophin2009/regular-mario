@@ -8,6 +8,7 @@
 // @grant        none
 // @noframes
 // @require      https://unpkg.com/bottleneck@2.13.0/es5.js
+// @require      https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js
 // ==/UserScript==
 
 import { Bottleneck } from "bottleneck";
@@ -22,6 +23,9 @@ import { calculatePlatforms } from "./generate";
 
   const platforms = calculatePlatforms(document.body);
   console.log(platforms);
+
+  const g = -20;
+
   for (let i = 0; i < platforms.length; i++) {
     let el = platforms[i].el;
   }

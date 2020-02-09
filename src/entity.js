@@ -9,6 +9,9 @@ export class Entity {
         this.collision = sides.NONE;
         this.collider = this.createCollider();
 
+        this.vx = 0;
+        this.vy = 0;
+
         entities.push(this);
     }
 
@@ -17,7 +20,19 @@ export class Entity {
     }
 
     update() {
-        nextCollider = this.createCollider();
-        
+        this.vy += g;
+        this.x += this.vx;
+        this.y += this.vy;
+
+        let nextCollider = this.createCollider();
+        for (let i = 0; i < platforms.length; i++) {
+            let platform = platforms[i];
+            if (isColliding(nextCollider, platform.collider)) {
+                this.collision = collisionDir(this.collider, nextCollider, platform.collider);
+                this.collider = nextCollider;
+                if (this.collision === sides.DOWN) this.vy = 0 
+                return;
+            }
+        }
     }
 }
