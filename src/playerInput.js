@@ -17,9 +17,9 @@ export function setupKeyListener() {
       up = true;
     } else if (event.key === "s" || event.key === "ArrowDown") {
       down = true;
-    } else if (event.key === "a" || event.key === "ArrowRight") {
+    } else if (event.key === "a" || event.key === "ArrowLeft") {
       left = true;
-    } else if (event.key === "d" || event.key === "ArrowLeft") {
+    } else if (event.key === "d" || event.key === "ArrowRight") {
       right = true;
     }
   });
@@ -28,9 +28,9 @@ export function setupKeyListener() {
       up = false;
     } else if (event.key === "s" || event.key === "ArrowDown") {
       down = false;
-    } else if (event.key === "a" || event.key === "ArrowRight") {
+    } else if (event.key === "a" || event.key === "ArrowLeft") {
       left = false;
-    } else if (event.key === "d" || event.key === "ArrowLeft") {
+    } else if (event.key === "d" || event.key === "ArrowRight") {
       right = false;
     }
   });

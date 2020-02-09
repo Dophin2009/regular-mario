@@ -1,5 +1,6 @@
 import { Entity } from "./entity";
 import { sides } from "./side_enum";
+import { ctx } from "./main";
 
 export class Player extends Entity {
   constructor(x, y, w, h) {
@@ -22,7 +23,7 @@ export class Player extends Entity {
 
     if (up) this.vertKE += this.vertKERate;
     else if (this.vertKE > 0) {
-      this.vy = Math.sqrt(this.vertKE);
+      this.vy = -Math.sqrt(this.vertKE);
       this.vertKE = 0;
     }
   }
@@ -31,5 +32,10 @@ export class Player extends Entity {
     super.update();
 
     if (this.collision !== sides.DOWN) this.vertKE = 0;
+
+    ctx.fillStyle = "rgb(255, 0, 0)";
+    ctx.strokeStyle = "rgba(0, 0, 0, 0)";
+    ctx.rect(this.x, this.y, this.w, this.h);
+    ctx.stroke();
   }
 }
