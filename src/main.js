@@ -11,15 +11,15 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js
 // ==/UserScript==
 
-import { Bottleneck } from "bottleneck";
-import { calculatePlatforms, calculateFinish } from "./generate";
+import { calculatePlatforms } from "./generate";
 import {
   updatePlayer,
   setupKeyListener,
   isLooping,
+  started,
   isScrollLocked
 } from "./playerInput";
-import { entities, Entity } from "./entity";
+import { entities } from "./entity";
 import { Player } from "./player";
 import { Collider } from "./collider";
 import { projectiles, Projectile, projectileGen } from "./projectile";
@@ -32,6 +32,8 @@ export let ctx;
 let docW;
 let docH;
 let offset;
+let finishY;
+let interval;
 
 function documentWidth() {
   return Math.max(
@@ -73,6 +75,8 @@ function createCanvas() {
 function loop() {
   if (isLooping) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(31, 153, 2, 0.3)";
+    ctx.fillRect(0, 0, documentWidth(), finishY);
 
     updatePlayer();
 
@@ -85,6 +89,16 @@ function loop() {
     for (let i = 0; i < entities.length; i++) entities[i].update();
 
     for (let i = 0; i < projectiles.length; i++) projectiles[i].update();
+    if (player.y < finishY) {
+      stop();
+    }
+
+    // for (let i = 0; i < platforms.length; i++) {
+    //   let p = platforms[i];
+    //   ctx.strokeStyle = "rgb(0, 0, 0)";
+    //   ctx.strokeRect(p.x, p.y + offset, p.width, p.height);
+    // }
+    //
   }
 }
 
@@ -94,6 +108,14 @@ export function hide() {
 
 export function unhide() {
   canvas.style.display = "block";
+}
+
+export function stop() {
+  canvas.remove();
+  started = false;
+  isLooping = false;
+  isScrollLocked = false;
+  clearInterval(interval);
 }
 
 export function start() {
@@ -112,11 +134,11 @@ export function start() {
   document.body.appendChild(canvas);
   ctx = canvas.getContext("2d");
 
-  console.log(platforms);
+  finishY = Math.min(platforms[0].y + 30, 100);
 
   player = new Player(0, docH - 25, 25, 25);
 
-  setInterval(loop, 10);
+  interval = setInterval(loop, 10);
 }
 
 (function() {

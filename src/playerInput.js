@@ -4,7 +4,7 @@ let up = false;
 let down = false;
 let left = false;
 let right = false;
-let started = false;
+export let started = false;
 export let isLooping = true;
 export let isScrollLocked = false;
 
