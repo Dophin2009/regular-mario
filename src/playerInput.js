@@ -6,6 +6,7 @@ let left = false;
 let right = false;
 let started = false;
 export let isLooping = true;
+export let isScrollLocked = false;
 
 export function setupKeyListener() {
   document.addEventListener("keydown", function(event) {
@@ -17,9 +18,11 @@ export function setupKeyListener() {
       } else if (isLooping) {
         hide();
         isLooping = false;
+        isScrollLocked = true;
       } else {
         unhide();
         isLooping = true;
+        isScrollLocked = false;
       }
     }
 

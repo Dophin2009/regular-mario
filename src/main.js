@@ -13,7 +13,7 @@
 
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms, calculateFinish } from "./generate";
-import { updatePlayer, setupKeyListener, isLooping } from "./playerInput";
+import { updatePlayer, setupKeyListener, isLooping, isScrollLocked } from "./playerInput";
 import { entities, Entity } from "./entity";
 import { Player } from "./player";
 import { Collider } from "./collider";
@@ -66,6 +66,10 @@ function loop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   updatePlayer();
+
+  if (isScrollLocked){
+    window.scrollTo(player.x, player.y);
+  }
 
   for (let i = 0; i < entities.length; i++) entities[i].update();
 
