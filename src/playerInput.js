@@ -15,14 +15,15 @@ export function setupKeyListener() {
         start();
         started = true;
         isLooping = true;
+        isScrollLocked = true;
       } else if (isLooping) {
         hide();
         isLooping = false;
-        isScrollLocked = true;
+        isScrollLocked = false;
       } else {
         unhide();
         isLooping = true;
-        isScrollLocked = false;
+        isScrollLocked = true;
       }
     }
 

@@ -13,7 +13,12 @@
 
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms, calculateFinish } from "./generate";
-import { updatePlayer, setupKeyListener, isLooping, isScrollLocked } from "./playerInput";
+import {
+  updatePlayer,
+  setupKeyListener,
+  isLooping,
+  isScrollLocked
+} from "./playerInput";
 import { entities, Entity } from "./entity";
 import { Player } from "./player";
 import { Collider } from "./collider";
@@ -63,21 +68,24 @@ function createCanvas() {
 }
 
 function loop() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (isLooping) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  updatePlayer();
+    updatePlayer();
 
-  if (isScrollLocked){
-    window.scrollTo(player.x, player.y);
+    if (isScrollLocked) {
+      window.scrollTo(player.x, player.y - 300);
+    }
+
+    for (let i = 0; i < entities.length; i++) entities[i].update();
+
+    // for (let i = 0; i < platforms.length; i++) {
+    //   let p = platforms[i];
+    //   ctx.strokeStyle = "rgb(0, 0, 0)";
+    //   ctx.strokeRect(p.x, p.y + offset, p.width, p.height);
+    // }
+    //
   }
-
-  for (let i = 0; i < entities.length; i++) entities[i].update();
-
-  // for (let i = 0; i < platforms.length; i++) {
-  //   let p = platforms[i];
-  //   ctx.strokeStyle = "rgb(0, 0, 0)";
-  //   ctx.strokeRect(p.x, p.y + offset, p.width, p.height);
-  // }
 }
 
 export function hide() {
