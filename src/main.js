@@ -14,6 +14,8 @@
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms } from "./generate";
 
+const platforms = calculatePlatforms(document.body);
+
 function documentWidth() {
   return Math.max(
     document.documentElement["clientWidth"],
@@ -51,6 +53,10 @@ function createCanvas() {
   return canvas;
 }
 
+function loop() {
+  
+}
+
 (function() {
   // var limiter = new Bottleneck({
   // reservoir: 10,
@@ -59,8 +65,6 @@ function createCanvas() {
   // });
 
   console.log(documentScroll());
-
-  const platforms = calculatePlatforms(document.body);
 
   const canvas = createCanvas();
   document.body.appendChild(canvas);
@@ -76,4 +80,6 @@ function createCanvas() {
     ctx.fillStyle = "rgb(200, 200, 200)";
     ctx.fillRect(p.x, p.y + offset, p.width, p.height);
   }
+
+  setInterval(loop, 10);
 })();
