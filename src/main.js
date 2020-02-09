@@ -12,7 +12,7 @@
 // ==/UserScript==
 
 import { Bottleneck } from "bottleneck";
-import { calculatePlatforms } from "./generate";
+import { calculatePlatforms, calculateFinish } from "./generate";
 import { updatePlayer, setupKeyListener, isLooping } from "./playerInput";
 import { entities, Entity } from "./entity";
 import { Player } from "./player";
@@ -68,12 +68,13 @@ function loop() {
   updatePlayer();
 
   for (let i = 0; i < entities.length; i++) entities[i].update();
-  
+
   // for (let i = 0; i < platforms.length; i++) {
   //   let p = platforms[i];
   //   ctx.strokeStyle = "rgb(0, 0, 0)";
   //   ctx.strokeRect(p.x, p.y + offset, p.width, p.height);
   // }
+}
 
 export function hide() {
   canvas.style.display = "none";
