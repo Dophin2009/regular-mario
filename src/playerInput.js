@@ -1,4 +1,4 @@
-import { player, start } from "./main";
+import { player, start, isLooping } from "./main";
 
 let up = false;
 let down = false;
@@ -11,6 +11,12 @@ export function setupKeyListener() {
     if (!started && event.key === "\\") {
       start();
       started = true;
+      isLooping = true;
+    }
+    else if (started && event.key === "\\"){
+        started = false;
+        hide();
+        isLooping = false;
     }
 
     if (event.key === " " || event.key === "ArrowUp" || event.key === "w") {

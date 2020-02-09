@@ -22,6 +22,8 @@ export let platforms = [];
 export const g = -2;
 export let player;
 
+export let isLooping = true;
+
 function documentWidth() {
   return Math.max(
     document.documentElement["clientWidth"],
@@ -60,11 +62,17 @@ function createCanvas() {
 }
 
 function loop() {
-  updatePlayer();
+  while (isLooping){
+    updatePlayer();
 
-  for (let i = 0; i < entities.length; i++) entities[i].update();
+    for (let i = 0; i < entities.length; i++) entities[i].update();
 
-  console.log("Player coordinates: (" + player.x + ", " + player.y + ")");
+    console.log("Player coordinates: (" + player.x + ", " + player.y + ")");
+  }
+}
+
+export function hide(){
+  canvas.style.display = "none";
 }
 
 export function start() {
