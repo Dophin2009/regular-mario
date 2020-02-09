@@ -1,5 +1,4 @@
-import { player } from "./main";
-import { start } from "./main";
+import { player, start } from "./main";
 
 let up = false;
 let down = false;

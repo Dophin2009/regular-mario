@@ -65,7 +65,7 @@ function loop() {
     entities[i].update();
 }
 
-function start() {
+export function start() {
   console.log(documentScroll());
   platforms = calculatePlatforms(document.body);
 

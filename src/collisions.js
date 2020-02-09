@@ -1,6 +1,6 @@
 import { sides } from "./side_enum";
 
-function collisionDir(moveColliderPast, moveColliderFuture, staticCollider) {
+export function collisionDir(moveColliderPast, moveColliderFuture, staticCollider) {
   if (isColliding(moveColliderFuture, staticCollider)) {
     if (moveColliderPast.y + moveColliderPast.height < staticCollider.y) {
       return sides.DOWN;
@@ -16,7 +16,7 @@ function collisionDir(moveColliderPast, moveColliderFuture, staticCollider) {
   }
 }
 
-function isColliding(moveColliderFuture, staticCollider) {
+export function isColliding(moveColliderFuture, staticCollider) {
   if (
     moveColliderFuture.x > staticCollider.x + staticCollider.width ||
     moveColliderFuture.x + moveColliderFuture.width < staticCollider.x ||
@@ -29,7 +29,7 @@ function isColliding(moveColliderFuture, staticCollider) {
   }
 }
 
-function collisionCorrection(side, og, next, st){
+export function collisionCorrection(side, og, next, st){
     if (side === sides.UP){
         return new Collider(next.x, st.y + st.height, og.width, og.height);
     }
