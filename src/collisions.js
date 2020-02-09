@@ -31,18 +31,18 @@ function isColliding(moveColliderFuture, staticCollider){
     }
 }
 
-function collisionCorrection(side, og, next, static){
+function collisionCorrection(side, og, next, st){
     if (side === sides.UP){
-        return new Collider(next.x, static.y + static.height, og.width, og.height);
+        return new Collider(next.x, st.y + st.height, og.width, og.height);
     }
     else if (side === sides.DOWN){
-        return new Collider(next.x, static.y - og.height, og.width, og.height);
+        return new Collider(next.x, st.y - og.height, og.width, og.height);
     }
     else if (side === sides.LEFT){
-        return new Collider(static.x + static.width, next.y, og.width, og.height);
+        return new Collider(st.x + st.width, next.y, og.width, og.height);
     }
     else if (side === sides.RIGHT){
-        return new Collider(static.x-og.width, next.y, og.width, og.height);
+        return new Collider(st.x-og.width, next.y, og.width, og.height);
     }
     else return next;
 }
