@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        http://*/*
+// @match        *://*/*
 // @grant        none
 // @noframes
 // @require      https://unpkg.com/bottleneck@2.13.0/es5.js
