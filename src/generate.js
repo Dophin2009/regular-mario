@@ -1,13 +1,10 @@
 class Platform {
-  constructor(x, y, width, height) {
+  constructor(el, x, y, width, height) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
-  }
-
-  collide() {
-    // Implement
+    this.el = el;
   }
 }
 
@@ -36,7 +33,13 @@ export function calculatePlatforms(el) {
   let platforms = [];
   for (let i = 0; i < nodes.length; i++) {
     let rect = textNodeRect(nodes[i]);
-    let plat = new Platform(rect.left, rect.top, rect.width, rect.height);
+    let plat = new Platform(
+      nodes[i],
+      rect.left,
+      rect.top,
+      rect.width,
+      rect.height
+    );
     platforms.push(plat);
   }
   return platforms;
