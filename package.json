@@ -4,7 +4,8 @@
   "description": "",
   "main": "platformer.user.js",
   "scripts": {
-    "build": "webpack -p"
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
