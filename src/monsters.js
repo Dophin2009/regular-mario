@@ -35,6 +35,9 @@ export class Follower{
             this.collider.y += this.speed;
         }
 
+        ctx.fillStyle = "rgb(255, 0, 255)";
+        ctx.fillRect(this.x, this.y, this.w, this.h);
+
         this.x = this.collider.x;
         this.y = this.collider.y;
 
