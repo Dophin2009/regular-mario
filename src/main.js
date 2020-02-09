@@ -13,7 +13,7 @@
 
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms, calculateFinish } from "./generate";
-import { updatePlayer, setupKeyListener, isLooping } from "./playerInput";
+import { updatePlayer, setupKeyListener, isLooping, isScrollLocked } from "./playerInput";
 import { entities, Entity } from "./entity";
 import { Player } from "./player";
 import { Collider } from "./collider";
@@ -67,6 +67,10 @@ function loop() {
 
   updatePlayer();
 
+  if (isScrollLocked){
+    window.scrollTo(player.x, player.y);
+  }
+
   for (let i = 0; i < entities.length; i++) entities[i].update();
 
   // for (let i = 0; i < platforms.length; i++) {
@@ -75,24 +79,6 @@ function loop() {
   //   ctx.strokeRect(p.x, p.y + offset, p.width, p.height);
   // }
 }
-
-export function disableScroll() { 
-  // Get the current page scroll position 
-  scrollTop =  
-    window.pageYOffset || document.documentElement.scrollTop; 
-  scrollLeft =  
-    window.pageXOffset || document.documentElement.scrollLeft, 
-
-      // if any scroll is attempted, 
-      // set this to the previous value 
-      window.onscroll = function() { 
-          window.scrollTo(scrollLeft, scrollTop); 
-      }; 
-} 
-
-export function enableScroll() { 
-  window.onscroll = function() {}; 
-} 
 
 export function hide() {
   canvas.style.display = "none";

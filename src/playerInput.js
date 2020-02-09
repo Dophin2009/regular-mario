@@ -1,4 +1,4 @@
-import { player, start, hide, unhide, disableScroll, enableScroll } from "./main";
+import { player, start, hide, unhide } from "./main";
 
 let up = false;
 let down = false;
@@ -6,6 +6,7 @@ let left = false;
 let right = false;
 let started = false;
 export let isLooping = true;
+export let isScrollLocked = false;
 
 export function setupKeyListener() {
   document.addEventListener("keydown", function(event) {
@@ -17,11 +18,11 @@ export function setupKeyListener() {
       } else if (isLooping) {
         hide();
         isLooping = false;
-        disableScroll();
+        isScrollLocked = true;
       } else {
         unhide();
         isLooping = true;
-        enableScroll();
+        isScrollLocked = false;
       }
     }
 
