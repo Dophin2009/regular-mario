@@ -16,7 +16,7 @@ function textNodeRect(textNode) {
   range.selectNodeContents(textNode);
   let rects = range.getClientRects();
   if (rects.length > 0) {
-    return rects[0];
+    return rects;
   }
   return null;
 }
@@ -43,19 +43,22 @@ export function calculatePlatforms(el) {
   let nodes = textNodesUnder(el);
   let platforms = [];
   for (let i = 0; i < nodes.length; i++) {
-    let rect = textNodeRect(nodes[i]);
-    if (rect === null) {
+    let rects = textNodeRect(nodes[i]);
+    if (rects === null) {
       continue;
     }
+    for (let j = 0; j < rects.length; j++) {
+      let rect = rects[j];
 
-    let plat = new Platform(
-      nodes[i],
-      rect.left,
-      rect.top,
-      rect.width,
-      rect.height
-    );
-    platforms.push(plat);
+      let plat = new Platform(
+        nodes[i],
+        rect.left,
+        rect.top,
+        rect.width,
+        rect.height
+      );
+      platforms.push(plat);
+    }
   }
   return platforms;
 }

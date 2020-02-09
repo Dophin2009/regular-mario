@@ -47,10 +47,10 @@ export class Entity {
         this.x = this.collider.x;
         this.y = this.collider.y;
 
-        if (this.collision === sides.LEFT || this.collision === sides.RIGHT)
-          this.vx = 0;
         if (this.collision === sides.DOWN) this.vy = 0;
-        if (this.collision === sides.UP) this.vy = -this.vy;
+        // if (this.collision === sides.UP) this.vy = -this.vy;
+        // if (this.collision === sides.LEFT || this.collision === sides.RIGHT)
+        //   this.vx = 0;
         return;
       }
     }
