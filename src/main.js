@@ -14,9 +14,14 @@
 import { Bottleneck } from "bottleneck";
 import { calculatePlatforms } from "./generate";
 import { updatePlayer, setupKeyListener } from "./playerInput";
+<<<<<<< HEAD
 import { entities, Entity } from "./entity"
 import { Player } from "./player"
 import { Collider } from "./collider";
+=======
+import { entities, Entity } from "./entity";
+import { Player } from "./player";
+>>>>>>> fa6bd357d686ef747208ea345b53005ec1148ee0
 
 export let platforms = [];
 export const g = -20;
@@ -62,8 +67,7 @@ function createCanvas() {
 function loop() {
   updatePlayer();
 
-  for (let i = 0; i < entities.length; i++)
-    entities[i].update();
+  for (let i = 0; i < entities.length; i++) entities[i].update();
 }
 
 export function start() {
@@ -79,8 +83,10 @@ export function start() {
 
   for (let i = 0; i < platforms.length; i++) {
     let p = platforms[i];
-    ctx.fillStyle = "rgb(200, 200, 200)";
-    ctx.fillRect(p.x, p.y + offset, p.width, p.height);
+    ctx.fillStyle = "rgba(200, 200, 200, 0.7)";
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.rect(p.x, p.y + offset, p.width, p.height);
+    ctx.stroke();
   }
 
   player = new Player(0, documentHeight() - 50, 25, 50);
