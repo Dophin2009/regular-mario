@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dophin2009/platformer.git"
+    "url": "git+https://github.com/mirryi/stonky-kong.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Dophin2009/platformer/issues"
+    "url": "https://github.com/mirryi/stonky-kong/issues"
   },
-  "homepage": "https://github.com/Dophin2009/platformer#readme",
+  "homepage": "https://github.com/mirryi/stonky-kong#readme",
   "devDependencies": {
     "eslint": "^6.8.0",
     "webpack": "^4.41.5",
